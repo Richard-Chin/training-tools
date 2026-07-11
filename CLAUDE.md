@@ -16,9 +16,15 @@
 - 🐙 GitHub repo：`Richard-Chin/training-tools`（公開，網頁的家）
 - 📘 Obsidian 駕駛艙：`training-tools/工作筆記.md`（想法的家）
 
+## 早會駕駛艙模板（共用引擎）
+所有早會專題共用 `tools/_cockpit/`：`cockpit.css`（樣式＋版型元件）＋`cockpit.js`（自動注入 🎲抽夥伴／⏱️計時器／✏️畫筆＋翻頁）。
+- 開新專題：複製 `tools/_cockpit/TEMPLATE.html`，只改 `.slide` 內容即可（用法見 `tools/_cockpit/README.md`）
+- 對 Claude 說「我想做一個 XXX 早會專題」→ 會自動用這套模板生成
+
 ## 工具/專題清單
 （之後加新內容時會自動更新）網址格式：`https://richard-chin.github.io/training-tools/tools/<名稱>/`
-- **warm-market-development**：緣故開發早會專題（網頁簡報 `index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸）
+- **_cockpit**：早會駕駛艙共用模板（引擎＋TEMPLATE＋README）
+- **warm-market-development**：緣故開發早會專題（駕駛艙版，`index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸）
 
 ## 工作注意事項
 - 客戶／員工資料一律去識別化：不放真實姓名、身分證字號、電話、地址

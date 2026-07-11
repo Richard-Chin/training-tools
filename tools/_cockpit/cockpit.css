@@ -1,0 +1,149 @@
+/* ============================================================
+   早會駕駛艙　共用樣式 cockpit.css
+   給所有早會專題投影片使用。搭配 cockpit.js。
+   用法見同資料夾 README.md。
+   ============================================================ */
+
+:root{
+  --ink:#12312e;        /* 深墨綠（主色，可覆寫） */
+  --ink2:#28514c;
+  --paper:#f6f4ee;      /* 暖白背景 */
+  --card:#ffffff;
+  --accent:#c8862a;     /* 琥珀金（強調色，可覆寫） */
+  --accent-soft:#f0e2c6;
+  --line:#dcd7cc;
+  --muted:#6b7873;
+  --good:#2f7d68;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:var(--ink);color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;
+}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  padding:6vmin 9vmin 8vmin;background:var(--paper);opacity:0;transition:opacity .35s ease;
+}
+.slide.active{display:flex;opacity:1;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---- 文字元件 ---- */
+.kicker{font-size:2.2vmin;letter-spacing:.35em;color:var(--accent);font-weight:700;margin-bottom:1.5vmin;text-transform:uppercase;}
+h1{font-size:8vmin;line-height:1.1;color:var(--ink);font-weight:900;letter-spacing:.02em}
+h2{font-size:5.2vmin;line-height:1.15;color:var(--ink);font-weight:800;margin-bottom:3vmin;position:relative;padding-bottom:2vmin}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:12vmin;height:.7vmin;background:var(--accent);border-radius:2px}
+p.lead{font-size:3.4vmin;color:var(--ink2);line-height:1.7;max-width:80%}
+.big{font-size:4.2vmin;line-height:1.6;color:var(--ink2);font-weight:600}
+
+/* ---- 條列 ---- */
+ul.points{list-style:none;margin-top:1vmin}
+ul.points li{font-size:3.3vmin;line-height:1.55;color:var(--ink2);padding:2vmin 0 2vmin 5vmin;position:relative;border-bottom:1px dashed var(--line);}
+ul.points li::before{content:"";position:absolute;left:.5vmin;top:2.9vmin;width:2.2vmin;height:2.2vmin;border-radius:50%;background:var(--accent-soft);border:.5vmin solid var(--accent);}
+ul.points li b{color:var(--ink)}
+
+/* ---- 步驟卡 ---- */
+.steps{display:flex;gap:3vmin;margin-top:2vmin}
+.step{flex:1;background:var(--card);border-radius:2vmin;padding:3.5vmin 3vmin;border:1px solid var(--line);box-shadow:0 2vmin 4vmin rgba(18,49,46,.06);display:flex;flex-direction:column;gap:1.5vmin;}
+.step .num{font-size:2.4vmin;font-weight:800;color:#fff;background:var(--ink2);width:5vmin;height:5vmin;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.step.focus{border:2px solid var(--accent);background:#fffdf7}
+.step.focus .num{background:var(--accent)}
+.step h3{font-size:3.2vmin;color:var(--ink);font-weight:800}
+.step p{font-size:2.5vmin;color:var(--muted);line-height:1.5}
+.step .tag{font-size:2vmin;color:var(--accent);font-weight:700;letter-spacing:.1em}
+
+/* ---- 引言塊 ---- */
+.quote{background:var(--card);border-left:1vmin solid var(--accent);padding:4vmin 5vmin;border-radius:0 2vmin 2vmin 0;margin-top:2vmin;font-size:3.6vmin;line-height:1.7;color:var(--ink2);font-weight:600;box-shadow:0 2vmin 4vmin rgba(18,49,46,.06);max-width:88%;}
+.quote .who{display:block;font-size:2.4vmin;color:var(--accent);margin-top:2vmin;font-weight:700}
+
+/* ---- 對比兩欄 ---- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vmin;margin-top:1vmin}
+.box{background:var(--card);border:1px solid var(--line);border-radius:1.6vmin;padding:3vmin 3.2vmin}
+.box .h{font-size:2.6vmin;font-weight:800;color:var(--accent);letter-spacing:.05em;margin-bottom:1.5vmin}
+.box .t{font-size:3vmin;color:var(--ink2);line-height:1.55}
+.box.cross{border-color:#e6cfcf;background:#fdf6f6}
+.box.cross .h{color:#b06a6a}
+.box.tick{border-color:#cfe6dc;background:#f5fbf8}
+.box.tick .h{color:var(--good)}
+
+/* ---- 編號問句 ---- */
+.three-q{display:flex;flex-direction:column;gap:2.4vmin;margin-top:1vmin}
+.three-q .q{background:var(--card);border:1px solid var(--line);border-radius:1.4vmin;padding:2.8vmin 3.2vmin;font-size:3.1vmin;color:var(--ink2);line-height:1.5;display:flex;gap:2.5vmin;align-items:center;}
+.three-q .q span{flex:none;font-size:2.6vmin;font-weight:800;color:var(--accent);border:2px solid var(--accent);border-radius:50%;width:6vmin;height:6vmin;display:flex;align-items:center;justify-content:center;}
+.three-q .q b{color:var(--ink)}
+
+/* ---- 深色行動框 ---- */
+.action{background:var(--ink);color:var(--paper);border-radius:2vmin;padding:4vmin;margin-top:2vmin;max-width:88%}
+.action .h{font-size:2.6vmin;letter-spacing:.3em;color:var(--accent);font-weight:800;margin-bottom:2vmin}
+.action ul{list-style:none}
+.action li{font-size:3.4vmin;padding:1.6vmin 0;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.12)}
+.action li:last-child{border:none}
+.action li b{color:#fff}
+
+/* ---- 深色投影片（封面/結語） ---- */
+.slide.dark{background:linear-gradient(135deg,#12312e 0%,#1c463f 100%);color:var(--paper)}
+.slide.dark h1{color:#fff}
+.slide.dark .kicker{color:var(--accent)}
+.slide.dark .sub{font-size:3.4vmin;color:#cfe0da;margin-top:3vmin;line-height:1.6}
+.slide.dark .foot{position:absolute;bottom:6vmin;left:9vmin;font-size:2.4vmin;color:#8fb0a7;letter-spacing:.1em}
+.slide.dark .big{color:#eaf3ef}
+
+/* ---- 循環圖 ---- */
+.cycle{display:flex;align-items:center;justify-content:center;gap:2.5vmin;margin-top:3vmin;flex-wrap:wrap}
+.cycle .node{background:var(--card);border:2px solid var(--accent);border-radius:1.4vmin;padding:2.4vmin 2.8vmin;font-size:2.8vmin;font-weight:700;color:var(--ink);text-align:center;min-width:22vmin}
+.cycle .arrow{font-size:4vmin;color:var(--accent);font-weight:900}
+
+/* ---- HUD ---- */
+#hud{position:fixed;bottom:0;left:0;right:0;height:1vmin;background:rgba(0,0,0,.08);z-index:20}
+#bar{height:100%;background:var(--accent);width:0;transition:width .3s ease}
+#counter{position:fixed;bottom:2.5vmin;right:3vmin;font-size:2.2vmin;color:var(--muted);z-index:20;font-weight:700;background:rgba(255,255,255,.7);padding:.6vmin 1.6vmin;border-radius:2vmin}
+#hint{position:fixed;bottom:2.5vmin;left:3vmin;font-size:2vmin;color:var(--muted);z-index:20;opacity:.7}
+.brand{position:absolute;top:5vmin;right:9vmin;font-size:2.2vmin;color:var(--muted);letter-spacing:.15em;font-weight:700}
+.slide.dark .brand{color:#8fb0a7}
+a.handout{position:fixed;top:2.5vmin;left:3vmin;z-index:30;font-size:2vmin;color:var(--accent);text-decoration:none;background:rgba(255,255,255,.85);padding:.8vmin 2vmin;border-radius:2vmin;font-weight:700;border:1px solid var(--accent)}
+
+/* ============ 駕駛艙工具（由 cockpit.js 注入） ============ */
+#cockpit{position:fixed;right:2vmin;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:1.2vmin;align-items:center}
+.tool{width:7vmin;height:7vmin;max-width:66px;max-height:66px;border-radius:50%;background:rgba(18,49,46,.9);color:#fff;border:2px solid rgba(255,255,255,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:2.7vmin;box-shadow:0 1vmin 3vmin rgba(0,0,0,.25);transition:transform .15s,background .15s;line-height:1;user-select:none}
+.tool:hover{transform:scale(1.08);background:var(--accent)}
+.tool.on{background:var(--accent);border-color:#fff}
+.tool small{font-size:1.4vmin;margin-top:.4vmin;letter-spacing:.05em}
+@media(max-width:820px){.tool{width:54px;height:54px;font-size:20px}.tool small{font-size:9px}}
+
+#palette{position:fixed;right:11.5vmin;top:50%;transform:translateY(-50%);z-index:40;display:none;flex-direction:column;gap:1vmin;background:rgba(18,49,46,.94);padding:1.4vmin;border-radius:3vmin;box-shadow:0 1vmin 3vmin rgba(0,0,0,.3)}
+#palette.show{display:flex}
+.swatch{width:5vmin;height:5vmin;max-width:46px;max-height:46px;border-radius:50%;cursor:pointer;border:3px solid transparent;box-sizing:border-box}
+.swatch.sel{border-color:#fff;transform:scale(1.05)}
+.pbtn{width:5vmin;height:5vmin;max-width:46px;max-height:46px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;border:none;cursor:pointer;font-size:2.4vmin}
+.pbtn.on{background:var(--accent)}
+
+#board{position:fixed;inset:0;z-index:35;pointer-events:none;touch-action:none}
+#board.draw{pointer-events:auto;cursor:crosshair}
+
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(10,26,24,.55)}
+.modal.show{display:flex}
+.panel{background:var(--card);border-radius:3vmin;padding:5vmin 6vmin;text-align:center;box-shadow:0 3vmin 8vmin rgba(0,0,0,.35);min-width:46vmin;position:relative}
+.panel .x{position:absolute;top:2vmin;right:3vmin;font-size:3.6vmin;color:var(--muted);cursor:pointer;line-height:1}
+.panel h3{font-size:3.4vmin;color:var(--ink);margin-bottom:3vmin;font-weight:800}
+.pickface{font-size:22vmin;font-weight:900;color:var(--accent);line-height:1;margin:1vmin 0;font-variant-numeric:tabular-nums}
+.rangebar{display:flex;gap:1.5vmin;align-items:center;justify-content:center;font-size:2.6vmin;color:var(--ink2);margin-bottom:1vmin}
+.rangebar input{width:12vmin;font-size:3vmin;padding:1vmin;text-align:center;border:2px solid var(--line);border-radius:1.4vmin}
+.btnrow{display:flex;gap:1.6vmin;justify-content:center;margin-top:2vmin;flex-wrap:wrap}
+.bigbtn{background:var(--accent);color:#fff;border:none;padding:1.8vmin 4vmin;border-radius:1.6vmin;font-size:3vmin;font-weight:800;cursor:pointer}
+.bigbtn.ghost{background:transparent;color:var(--ink2);border:2px solid var(--line)}
+.timeface{font-size:20vmin;font-weight:900;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums;margin:1vmin 0}
+.timeface.warn{color:#e5484d;animation:blink .6s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+.presets{display:flex;gap:1.2vmin;justify-content:center;margin-bottom:2vmin;flex-wrap:wrap}
+.preset{background:var(--accent-soft);color:var(--ink);border:none;padding:1.2vmin 2.6vmin;border-radius:1.4vmin;font-size:2.4vmin;font-weight:700;cursor:pointer}
+.chk{font-size:2.3vmin;color:var(--muted);margin-top:1.5vmin;display:flex;gap:.8vmin;align-items:center;justify-content:center}
+
+/* ---- 窄螢幕 ---- */
+@media (max-width:820px){
+  .steps{flex-direction:column}
+  .grid2{grid-template-columns:1fr}
+  p.lead{max-width:100%}
+  .cycle{flex-direction:column}
+  .cycle .arrow{transform:rotate(90deg)}
+}

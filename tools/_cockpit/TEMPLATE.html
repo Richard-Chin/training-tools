@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早會專題 — 模板</title>
+<!-- 這兩行相對路徑：若本檔在 tools/<你的專題>/index.html，改成 ../_cockpit/... -->
+<link rel="stylesheet" href="cockpit.css">
+<!-- 想覆寫品牌色，取消下一段註解自訂 --accent / --ink -->
+<!-- <style>:root{--accent:#0a5;}</style> -->
+</head>
+<body>
+
+<!-- 只要寫 #stage 內的 .slide，工具列會自動出現 -->
+<div id="stage">
+
+  <!-- 封面（深色） -->
+  <section class="slide dark active">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜早會專題</div>
+    <div class="kicker">Kicker 英文小標</div>
+    <h1>專題大標題</h1>
+    <p class="sub">一句副標，說明這場早會要帶走什麼。</p>
+    <div class="foot">今日重心 ▸ 一句話點出重點</div>
+  </section>
+
+  <!-- 條列頁 -->
+  <section class="slide">
+    <div class="brand">專題名</div>
+    <div class="kicker">Why</div>
+    <h2>一個標準內頁標題</h2>
+    <ul class="points">
+      <li><b>重點一</b>　說明文字。</li>
+      <li><b>重點二</b>　說明文字。</li>
+      <li><b>重點三</b>　說明文字。</li>
+    </ul>
+  </section>
+
+  <!-- 步驟卡頁（focus 類別＝強調那張） -->
+  <section class="slide">
+    <div class="brand">專題名</div>
+    <div class="kicker">Flow</div>
+    <h2>三步驟</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div class="tag">階段一</div><h3>標題</h3><p>說明</p></div>
+      <div class="step"><div class="num">2</div><div class="tag">階段二</div><h3>標題</h3><p>說明</p></div>
+      <div class="step focus"><div class="num">3</div><div class="tag">重心 ★</div><h3>標題</h3><p>說明</p></div>
+    </div>
+  </section>
+
+  <!-- 對比 / 引言頁 -->
+  <section class="slide">
+    <div class="brand">專題名</div>
+    <div class="kicker">Mindset</div>
+    <h2>對比與金句</h2>
+    <div class="grid2">
+      <div class="box cross"><div class="h">✕ 常見誤解</div><div class="t">誤解內容。</div></div>
+      <div class="box tick"><div class="h">✓ 正確認知</div><div class="t">正確內容。</div></div>
+    </div>
+    <div class="quote">一句想讓大家記住的話。<span class="who">— 出處或註解</span></div>
+  </section>
+
+  <!-- 行動頁 + 循環圖 -->
+  <section class="slide">
+    <div class="brand">Action</div>
+    <div class="kicker">Take Action</div>
+    <h2>散會前做的事</h2>
+    <div class="action"><div class="h">TODAY ACTION</div>
+      <ul><li>① 行動一</li><li>② 行動二</li><li>③ 行動三</li></ul>
+    </div>
+  </section>
+
+  <!-- 結語（深色） -->
+  <section class="slide dark">
+    <div class="brand">富邦人壽 · 邦拓通訊處</div>
+    <div class="kicker">Remember</div>
+    <h1 style="font-size:6.5vmin">一句收尾的<br>金句。</h1>
+    <p class="sub">副標補充。</p>
+    <div class="foot">早會專題 · 完</div>
+  </section>
+
+</div>
+
+<!-- 設定（可選）：抽人範圍、計時預設、單頁手卡連結 -->
+<script>
+  window.COCKPIT_CONFIG = {
+    seatMin: 1,
+    seatMax: 30,
+    timerDefault: 3
+    // handout: 'handout.html'   // 有手卡再開這行
+  };
+</script>
+<script src="cockpit.js"></script>
+</body>
+</html>

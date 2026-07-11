@@ -18,6 +18,7 @@
 
 ## 工具/專題清單
 （之後加新內容時會自動更新）網址格式：`https://richard-chin.github.io/training-tools/tools/<名稱>/`
+- **warm-market-development**：緣故開發早會專題（網頁簡報 `index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸）
 
 ## 工作注意事項
 - 客戶／員工資料一律去識別化：不放真實姓名、身分證字號、電話、地址

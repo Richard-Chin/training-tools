@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>緣故開發 — 早會專題</title>
+<style>
+  :root{
+    --ink:#12312e;        /* 深墨綠 */
+    --ink2:#28514c;
+    --paper:#f6f4ee;      /* 暖白 */
+    --card:#ffffff;
+    --accent:#c8862a;     /* 琥珀金 */
+    --accent-soft:#f0e2c6;
+    --line:#dcd7cc;
+    --muted:#6b7873;
+    --good:#2f7d68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--ink);
+    color:var(--ink);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  #stage{
+    position:fixed;inset:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .slide{
+    position:absolute;inset:0;
+    display:none;
+    flex-direction:column;
+    padding:6vmin 9vmin 8vmin;
+    background:var(--paper);
+    opacity:0;
+    transition:opacity .35s ease;
+  }
+  .slide.active{display:flex;opacity:1;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .kicker{
+    font-size:2.2vmin;letter-spacing:.35em;color:var(--accent);
+    font-weight:700;margin-bottom:1.5vmin;text-transform:uppercase;
+  }
+  h1{font-size:8vmin;line-height:1.1;color:var(--ink);font-weight:900;letter-spacing:.02em}
+  h2{font-size:5.2vmin;line-height:1.15;color:var(--ink);font-weight:800;margin-bottom:3vmin;position:relative;padding-bottom:2vmin}
+  h2::after{content:"";position:absolute;left:0;bottom:0;width:12vmin;height:.7vmin;background:var(--accent);border-radius:2px}
+  p.lead{font-size:3.4vmin;color:var(--ink2);line-height:1.7;max-width:80%}
+  .big{font-size:4.2vmin;line-height:1.6;color:var(--ink2);font-weight:600}
+
+  ul.points{list-style:none;margin-top:1vmin}
+  ul.points li{
+    font-size:3.3vmin;line-height:1.55;color:var(--ink2);
+    padding:2vmin 0 2vmin 5vmin;position:relative;border-bottom:1px dashed var(--line);
+  }
+  ul.points li::before{
+    content:"";position:absolute;left:.5vmin;top:2.9vmin;
+    width:2.2vmin;height:2.2vmin;border-radius:50%;
+    background:var(--accent-soft);border:.5vmin solid var(--accent);
+  }
+  ul.points li b{color:var(--ink)}
+
+  .steps{display:flex;gap:3vmin;margin-top:2vmin}
+  .step{
+    flex:1;background:var(--card);border-radius:2vmin;padding:3.5vmin 3vmin;
+    border:1px solid var(--line);box-shadow:0 2vmin 4vmin rgba(18,49,46,.06);
+    display:flex;flex-direction:column;gap:1.5vmin;
+  }
+  .step .num{
+    font-size:2.4vmin;font-weight:800;color:#fff;background:var(--ink2);
+    width:5vmin;height:5vmin;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  }
+  .step.focus{border:2px solid var(--accent);background:#fffdf7}
+  .step.focus .num{background:var(--accent)}
+  .step h3{font-size:3.2vmin;color:var(--ink);font-weight:800}
+  .step p{font-size:2.5vmin;color:var(--muted);line-height:1.5}
+  .step .tag{font-size:2vmin;color:var(--accent);font-weight:700;letter-spacing:.1em}
+
+  .quote{
+    background:var(--card);border-left:1vmin solid var(--accent);
+    padding:4vmin 5vmin;border-radius:0 2vmin 2vmin 0;margin-top:2vmin;
+    font-size:3.6vmin;line-height:1.7;color:var(--ink2);font-weight:600;
+    box-shadow:0 2vmin 4vmin rgba(18,49,46,.06);max-width:88%;
+  }
+  .quote .who{display:block;font-size:2.4vmin;color:var(--accent);margin-top:2vmin;font-weight:700}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vmin;margin-top:1vmin}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:1.6vmin;padding:3vmin 3.2vmin}
+  .box .h{font-size:2.6vmin;font-weight:800;color:var(--accent);letter-spacing:.05em;margin-bottom:1.5vmin}
+  .box .t{font-size:3vmin;color:var(--ink2);line-height:1.55}
+  .box.cross{border-color:#e6cfcf;background:#fdf6f6}
+  .box.cross .h{color:#b06a6a}
+  .box.tick{border-color:#cfe6dc;background:#f5fbf8}
+  .box.tick .h{color:var(--good)}
+
+  .three-q{display:flex;flex-direction:column;gap:2.4vmin;margin-top:1vmin}
+  .three-q .q{
+    background:var(--card);border:1px solid var(--line);border-radius:1.4vmin;
+    padding:2.8vmin 3.2vmin;font-size:3.1vmin;color:var(--ink2);line-height:1.5;
+    display:flex;gap:2.5vmin;align-items:center;
+  }
+  .three-q .q span{
+    flex:none;font-size:2.6vmin;font-weight:800;color:var(--accent);
+    border:2px solid var(--accent);border-radius:50%;width:6vmin;height:6vmin;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .three-q .q b{color:var(--ink)}
+
+  .action{background:var(--ink);color:var(--paper);border-radius:2vmin;padding:4vmin;margin-top:2vmin;max-width:88%}
+  .action .h{font-size:2.6vmin;letter-spacing:.3em;color:var(--accent);font-weight:800;margin-bottom:2vmin}
+  .action ul{list-style:none}
+  .action li{font-size:3.4vmin;padding:1.6vmin 0;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.12)}
+  .action li:last-child{border:none}
+  .action li b{color:#fff}
+
+  /* 封面 & 結語 深色 */
+  .slide.dark{background:linear-gradient(135deg,#12312e 0%,#1c463f 100%);color:var(--paper)}
+  .slide.dark h1{color:#fff}
+  .slide.dark .kicker{color:var(--accent)}
+  .slide.dark .sub{font-size:3.4vmin;color:#cfe0da;margin-top:3vmin;line-height:1.6}
+  .slide.dark .foot{position:absolute;bottom:6vmin;left:9vmin;font-size:2.4vmin;color:#8fb0a7;letter-spacing:.1em}
+  .slide.dark .big{color:#eaf3ef}
+
+  .cycle{display:flex;align-items:center;justify-content:center;gap:2.5vmin;margin-top:3vmin;flex-wrap:wrap}
+  .cycle .node{background:var(--card);border:2px solid var(--accent);border-radius:1.4vmin;padding:2.4vmin 2.8vmin;font-size:2.8vmin;font-weight:700;color:var(--ink);text-align:center;min-width:22vmin}
+  .cycle .arrow{font-size:4vmin;color:var(--accent);font-weight:900}
+
+  /* HUD */
+  #hud{position:fixed;bottom:0;left:0;right:0;height:1vmin;background:rgba(0,0,0,.08);z-index:20}
+  #bar{height:100%;background:var(--accent);width:0;transition:width .3s ease}
+  #counter{position:fixed;bottom:2.5vmin;right:3vmin;font-size:2.2vmin;color:var(--muted);z-index:20;font-weight:700;background:rgba(255,255,255,.7);padding:.6vmin 1.6vmin;border-radius:2vmin}
+  .slide.dark ~ #counter{}
+  #hint{position:fixed;bottom:2.5vmin;left:3vmin;font-size:2vmin;color:var(--muted);z-index:20;opacity:.7}
+  .brand{position:absolute;top:5vmin;right:9vmin;font-size:2.2vmin;color:var(--muted);letter-spacing:.15em;font-weight:700}
+  .slide.dark .brand{color:#8fb0a7}
+  a.handout{position:fixed;top:2.5vmin;left:3vmin;z-index:30;font-size:2vmin;color:var(--accent);text-decoration:none;background:rgba(255,255,255,.85);padding:.8vmin 2vmin;border-radius:2vmin;font-weight:700;border:1px solid var(--accent)}
+
+  @media (max-width:820px){
+    .steps{flex-direction:column}
+    .grid2{grid-template-columns:1fr}
+    p.lead{max-width:100%}
+    .cycle{flex-direction:column}
+    .cycle .arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<a class="handout" href="handout.html" target="_blank">📄 單頁手卡</a>
+
+<div id="stage">
+
+  <!-- 1 封面 -->
+  <section class="slide dark active">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜早會專題</div>
+    <div class="kicker">Warm Market</div>
+    <h1>緣故開發</h1>
+    <p class="sub">從最熟悉的人開始，把善意與專業，<br>延伸成一張越走越寬的市場地圖。</p>
+    <div class="foot">今日重心 ▸ 從緣故走到「轉介紹」的良性循環</div>
+  </section>
+
+  <!-- 2 為什麼從緣故 -->
+  <section class="slide">
+    <div class="brand">緣故開發</div>
+    <div class="kicker">Why</div>
+    <h2>為什麼從「緣故」開始</h2>
+    <ul class="points">
+      <li><b>信任是現成的</b>　陌生開發要先建立信任；緣故市場信任已經在，起點高。</li>
+      <li><b>成本最低、回饋最快</b>　不用花錢買名單，一通問候就能約到見面。</li>
+      <li><b>練功的最佳場域</b>　在願意聽你說的人面前，把觀念與流程練熟。</li>
+      <li><b>真正的價值傳遞</b>　你最在乎的人，本來就該優先得到正確的保障規劃。</li>
+    </ul>
+  </section>
+
+  <!-- 3 心態校準 -->
+  <section class="slide">
+    <div class="brand">緣故開發</div>
+    <div class="kicker">Mindset</div>
+    <h2>先把心態校準</h2>
+    <div class="grid2">
+      <div class="box cross">
+        <div class="h">✕ 不是這樣</div>
+        <div class="t">「找熟人買保險，好像在消費關係、欠人情。」</div>
+      </div>
+      <div class="box tick">
+        <div class="h">✓ 而是這樣</div>
+        <div class="t">「我懂的東西剛好能保護我在乎的人，這是分享，不是打擾。」</div>
+      </div>
+    </div>
+    <div class="quote">
+      我們提供的是「有沒有需要」的專業判斷，<br>決定權永遠交還給對方。
+      <span class="who">— 這就是緣故開發的倫理底線</span>
+    </div>
+  </section>
+
+  <!-- 4 三步驟總覽 -->
+  <section class="slide">
+    <div class="brand">緣故開發</div>
+    <div class="kicker">Flow</div>
+    <h2>緣故開發三步驟</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="tag">盤點</div>
+        <h3>列出名單</h3>
+        <p>系統性寫下所有認識的人，先不預設「他會不會需要」。</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="tag">約訪</div>
+        <h3>自然開口</h3>
+        <p>以關心與分享為出發點，先約到見面，而不是電話裡就談保險。</p>
+      </div>
+      <div class="step focus">
+        <div class="num">3</div>
+        <div class="tag">今日重心 ★</div>
+        <h3>轉介紹延伸</h3>
+        <p>把服務做好，讓每一位緣故，成為下一批市場的起點。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Step1 盤點名單 -->
+  <section class="slide">
+    <div class="brand">Step 1</div>
+    <div class="kicker">Step 1 · 盤點名單</div>
+    <h2>用「六大圈」把名單挖出來</h2>
+    <ul class="points">
+      <li><b>家庭親戚圈</b>　父母、手足、表堂兄弟姊妹、姻親</li>
+      <li><b>求學同窗圈</b>　國小到研究所同學、社團、學長姊學弟妹</li>
+      <li><b>過往職場圈</b>　前同事、上司下屬、廠商客戶、合作夥伴</li>
+      <li><b>生活消費圈</b>　鄰居、美髮、健身、常光顧的店家</li>
+      <li><b>興趣社群圈</b>　球隊、宗教、志工、寵物、親子社團</li>
+      <li><b>數位聯絡圈</b>　手機通訊錄、LINE、FB 名單逐一過一遍</li>
+    </ul>
+  </section>
+
+  <!-- 6 Step2 自然約訪 -->
+  <section class="slide">
+    <div class="brand">Step 2</div>
+    <div class="kicker">Step 2 · 自然約訪</div>
+    <h2>開口，從「關心」而不是「推銷」</h2>
+    <div class="quote">
+      「最近好嗎？我剛好轉換到一個新工作，學了很多對家庭財務蠻實用的觀念，<br>
+      想找你喝杯咖啡、順便聽聽你的近況，這週末有空嗎？」
+      <span class="who">— 目標只有一個：先約到見面</span>
+    </div>
+    <ul class="points" style="margin-top:2vmin">
+      <li>電話／訊息裡<b>不談商品、不談保費</b>，只約時間地點</li>
+      <li>給對方<b>二選一</b>：「週三晚上還是週六下午方便？」</li>
+      <li>被拒絕很正常，<b>謝謝＋保持關係</b>，未來還有機會</li>
+    </ul>
+  </section>
+
+  <!-- 7 Step3 轉介紹（重心） -->
+  <section class="slide">
+    <div class="brand">Step 3 ★</div>
+    <div class="kicker">Step 3 · 今日重心</div>
+    <h2>把緣故，延伸成轉介紹</h2>
+    <p class="big" style="margin-bottom:2vmin">緣故市場會用完，<b style="color:var(--accent)">轉介紹</b>讓它永遠用不完。</p>
+    <ul class="points">
+      <li><b>前提是「服務先到位」</b>　對方真心覺得被照顧，才會願意介紹人給你。</li>
+      <li><b>要引薦，要「主動且具體」地開口</b>　不開口，好口碑也不會自己走出來。</li>
+      <li><b>幫對方縮小範圍</b>　問「你身邊有沒有…」比「有沒有人要保險」好開口十倍。</li>
+    </ul>
+  </section>
+
+  <!-- 8 黃金三問 -->
+  <section class="slide">
+    <div class="brand">Step 3 ★</div>
+    <div class="kicker">Referral · 話術</div>
+    <h2>轉介紹「黃金三問」</h2>
+    <div class="three-q">
+      <div class="q"><span>1</span><div>「今天聊下來，你覺得這個保障觀念<b>對你有幫助嗎？</b>」<br><small style="color:var(--muted);font-size:2.3vmin">— 先確認價值，取得認同</small></div></div>
+      <div class="q"><span>2</span><div>「你身邊<b>剛結婚、剛生小孩、或剛換工作</b>的朋友，有沒有想到誰？」<br><small style="color:var(--muted);font-size:2.3vmin">— 給具體情境，幫他想得起來</small></div></div>
+      <div class="q"><span>3</span><div>「我不會給對方壓力，只是<b>提供跟給你一樣的分享</b>，方便幫我引薦一下嗎？」<br><small style="color:var(--muted);font-size:2.3vmin">— 降低顧慮，明確請託</small></div></div>
+    </div>
+  </section>
+
+  <!-- 9 良性循環 -->
+  <section class="slide">
+    <div class="brand">緣故開發</div>
+    <div class="kicker">The Loop</div>
+    <h2>轉介紹的良性循環</h2>
+    <div class="cycle">
+      <div class="node">用心服務<br>緣故客戶</div>
+      <div class="arrow">→</div>
+      <div class="node">獲得信任<br>與認同</div>
+      <div class="arrow">→</div>
+      <div class="node">主動請託<br>黃金三問</div>
+      <div class="arrow">→</div>
+      <div class="node">新名單<br>再次服務</div>
+    </div>
+    <p class="lead" style="margin-top:4vmin;text-align:center;max-width:100%">
+      每一次真誠的服務，都在為下一次的相遇鋪路。
+    </p>
+  </section>
+
+  <!-- 10 今日行動 -->
+  <section class="slide">
+    <div class="brand">Action</div>
+    <div class="kicker">Take Action</div>
+    <h2>今天散會前，做三件事</h2>
+    <div class="action">
+      <div class="h">TODAY ACTION</div>
+      <ul>
+        <li>① 用「六大圈」<b>寫滿 30 個緣故名單</b>（先寫名字，不評估）</li>
+        <li>② 圈出本週要<b>約訪的 3 位</b>，今天就傳出第一則關心訊息</li>
+        <li>③ 對一位已成交的客戶，<b>練習開口黃金三問</b>，要到 1 個引薦</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11 結語 -->
+  <section class="slide dark">
+    <div class="brand">富邦人壽 · 邦拓通訊處</div>
+    <div class="kicker">Remember</div>
+    <h1 style="font-size:6.5vmin">緣故，是起點<br>不是終點。</h1>
+    <p class="sub">把每一段關係都服務到讓人願意介紹，<br>你的市場，就會一直長大。</p>
+    <div class="foot">早會專題 · 緣故開發 · 完</div>
+  </section>
+
+</div>
+
+<div id="counter">1 / 11</div>
+<div id="hint">← → 翻頁　·　F 全螢幕</div>
+<div id="hud"><div id="bar"></div></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const counter=document.getElementById('counter');
+  const bar=document.getElementById('bar');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    counter.textContent=(i+1)+' / '+slides.length;
+    bar.style.width=((i+1)/slides.length*100)+'%';
+  }
+  function next(){show(i+1)}
+  function prev(){show(i-1)}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next()}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev()}
+    else if(e.key==='Home'){show(0)}
+    else if(e.key==='End'){show(slides.length-1)}
+    else if(e.key==='f'||e.key==='F'){
+      if(!document.fullscreenElement)document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+  // 點右半前進、左半後退
+  document.getElementById('stage').addEventListener('click',e=>{
+    if(e.target.closest('a'))return;
+    (e.clientX> window.innerWidth/2)?next():prev();
+  });
+  show(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>緣故開發 — 單頁重點手卡</title>
+<style>
+  :root{
+    --ink:#12312e;--ink2:#28514c;--paper:#f6f4ee;--card:#fff;
+    --accent:#c8862a;--accent-soft:#f0e2c6;--line:#dcd7cc;--muted:#6b7873;--good:#2f7d68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--paper);color:var(--ink);padding:24px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:820px;margin:0 auto;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(18,49,46,.08)}
+  .top{background:linear-gradient(135deg,#12312e,#1c463f);color:#fff;padding:26px 32px;position:relative}
+  .top .brand{font-size:12px;letter-spacing:.2em;color:#8fb0a7;font-weight:700}
+  .top h1{font-size:32px;font-weight:900;margin-top:6px;letter-spacing:.02em}
+  .top .kick{color:var(--accent);font-weight:700;letter-spacing:.3em;font-size:12px;margin-top:4px}
+  .top .sub{color:#cfe0da;font-size:14px;margin-top:10px}
+  .body{padding:26px 32px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  h2{font-size:16px;color:var(--accent);font-weight:800;letter-spacing:.04em;
+    border-bottom:2px solid var(--accent-soft);padding-bottom:6px;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px}
+  h2 .n{background:var(--ink2);color:#fff;width:22px;height:22px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+  ul{list-style:none}
+  li{font-size:14px;color:var(--ink2);padding:5px 0 5px 18px;position:relative}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;
+    border-radius:50%;background:var(--accent)}
+  li b{color:var(--ink)}
+  .mind{display:flex;gap:12px;margin:14px 0 4px}
+  .mind .m{flex:1;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45}
+  .mind .no{background:#fdf6f6;border:1px solid #e6cfcf;color:#8a5a5a}
+  .mind .yes{background:#f5fbf8;border:1px solid #cfe6dc;color:#2f6b58}
+  .mind .m .lab{font-weight:800;font-size:12px;display:block;margin-bottom:4px}
+  .focus{background:#fffdf7;border:2px solid var(--accent);border-radius:12px;padding:16px 18px;margin-top:18px}
+  .focus .h{font-size:15px;font-weight:800;color:var(--accent);margin-bottom:10px;letter-spacing:.04em}
+  .q{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink2)}
+  .q:last-child{border:none}
+  .q .num{flex:none;width:24px;height:24px;border:2px solid var(--accent);color:var(--accent);
+    border-radius:50%;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .q b{color:var(--ink)}
+  .action{background:var(--ink);color:var(--paper);border-radius:12px;padding:16px 18px;margin-top:16px}
+  .action .h{color:var(--accent);font-weight:800;letter-spacing:.2em;font-size:12px;margin-bottom:8px}
+  .action ol{margin-left:18px}
+  .action li{color:#eaf3ef;font-size:14px}
+  .action li::before{display:none}
+  .action li{list-style:decimal;padding-left:4px}
+  .action li b{color:#fff}
+  .foot{text-align:center;color:var(--muted);font-size:12px;padding:14px;border-top:1px solid var(--line)}
+  .noprint{max-width:820px;margin:14px auto 0;text-align:center}
+  .noprint button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
+  .noprint a{color:var(--ink2);font-size:13px;margin-left:14px;text-decoration:none}
+  @media print{
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
+    .noprint{display:none}
+  }
+  @media (max-width:640px){.row{grid-template-columns:1fr}.mind{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="top">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜早會專題</div>
+    <div class="kick">WARM MARKET</div>
+    <h1>緣故開發 · 重點手卡</h1>
+    <div class="sub">從最熟悉的人開始，把每一段關係服務到「願意介紹」，市場就會一直長大。</div>
+  </div>
+
+  <div class="body">
+
+    <div class="mind">
+      <div class="m no"><span class="lab">✕ 別誤會</span>找熟人＝消費關係、欠人情。</div>
+      <div class="m yes"><span class="lab">✓ 真心態</span>我懂的東西剛好能保護我在乎的人，這是分享，決定權交還對方。</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <h2><span class="n">1</span>盤點名單 · 六大圈</h2>
+        <ul>
+          <li><b>家庭親戚</b>　父母手足、表堂親戚、姻親</li>
+          <li><b>求學同窗</b>　各階段同學、社團、學長姊弟妹</li>
+          <li><b>過往職場</b>　前同事、上司下屬、廠商夥伴</li>
+          <li><b>生活消費</b>　鄰居、美髮、健身、常光顧店家</li>
+          <li><b>興趣社群</b>　球隊、宗教、志工、親子社團</li>
+          <li><b>數位聯絡</b>　通訊錄、LINE、FB 逐一過一遍</li>
+        </ul>
+      </div>
+      <div>
+        <h2><span class="n">2</span>自然約訪 · 只約見面</h2>
+        <ul>
+          <li>電話訊息裡<b>不談商品、不談保費</b></li>
+          <li>以<b>關心與分享</b>開口，先約時間地點</li>
+          <li>給<b>二選一</b>：「週三晚上還是週六下午？」</li>
+          <li>被拒絕正常，<b>謝謝＋保持關係</b></li>
+        </ul>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;border-left:3px solid var(--accent-soft);padding-left:10px">
+          「最近好嗎？我換了新工作，學了很多對家庭財務蠻實用的觀念，想找你喝杯咖啡順便敘敘舊，這週末有空嗎？」
+        </p>
+      </div>
+    </div>
+
+    <div class="focus">
+      <div class="h">★ 今日重心 — Step 3 轉介紹延伸｜黃金三問</div>
+      <div class="q"><span class="num">1</span><div>「今天聊下來，你覺得這個保障觀念<b>對你有幫助嗎？</b>」<span style="color:var(--muted)"> — 先確認價值</span></div></div>
+      <div class="q"><span class="num">2</span><div>「你身邊<b>剛結婚、剛生小孩、或剛換工作</b>的朋友，想到誰？」<span style="color:var(--muted)"> — 給具體情境</span></div></div>
+      <div class="q"><span class="num">3</span><div>「我不給對方壓力，只做<b>跟給你一樣的分享</b>，方便幫我引薦嗎？」<span style="color:var(--muted)"> — 明確請託</span></div></div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:10px">循環：用心服務 → 獲得信任 → 主動請託 → 新名單 → 再服務。<b style="color:var(--good)">服務先到位，才有轉介紹。</b></p>
+    </div>
+
+    <div class="action">
+      <div class="h">TODAY ACTION · 散會前三件事</div>
+      <ol>
+        <li>用六大圈<b>寫滿 30 個緣故名單</b>（先寫名字，不評估）</li>
+        <li>圈出本週<b>約訪 3 位</b>，今天傳出第一則關心訊息</li>
+        <li>對一位客戶<b>練習黃金三問</b>，要到 1 個引薦</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="foot">緣故，是起點，不是終點 · 富邦人壽 邦拓通訊處</div>
+</div>
+
+<div class="noprint">
+  <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+  <a href="index.html">← 回到網頁簡報</a>
+</div>
+
+</body>
+</html>

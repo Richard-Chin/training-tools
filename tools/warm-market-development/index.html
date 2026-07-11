@@ -145,6 +145,55 @@
     .cycle{flex-direction:column}
     .cycle .arrow{transform:rotate(90deg)}
   }
+
+  /* ===== 駕駛艙工具 ===== */
+  #cockpit{position:fixed;right:2vmin;top:50%;transform:translateY(-50%);z-index:40;
+    display:flex;flex-direction:column;gap:1.2vmin;align-items:center}
+  .tool{width:7vmin;height:7vmin;max-width:66px;max-height:66px;border-radius:50%;
+    background:rgba(18,49,46,.9);color:#fff;border:2px solid rgba(255,255,255,.18);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    cursor:pointer;font-size:2.7vmin;box-shadow:0 1vmin 3vmin rgba(0,0,0,.25);
+    transition:transform .15s,background .15s;line-height:1;user-select:none}
+  .tool:hover{transform:scale(1.08);background:var(--accent)}
+  .tool.on{background:var(--accent);border-color:#fff}
+  .tool small{font-size:1.4vmin;margin-top:.4vmin;letter-spacing:.05em}
+  @media(max-width:820px){.tool{width:54px;height:54px;font-size:20px}.tool small{font-size:9px}}
+
+  #palette{position:fixed;right:11.5vmin;top:50%;transform:translateY(-50%);z-index:40;
+    display:none;flex-direction:column;gap:1vmin;background:rgba(18,49,46,.94);
+    padding:1.4vmin;border-radius:3vmin;box-shadow:0 1vmin 3vmin rgba(0,0,0,.3)}
+  #palette.show{display:flex}
+  .swatch{width:5vmin;height:5vmin;max-width:46px;max-height:46px;border-radius:50%;
+    cursor:pointer;border:3px solid transparent;box-sizing:border-box}
+  .swatch.sel{border-color:#fff;transform:scale(1.05)}
+  .pbtn{width:5vmin;height:5vmin;max-width:46px;max-height:46px;border-radius:50%;
+    background:rgba(255,255,255,.14);color:#fff;border:none;cursor:pointer;font-size:2.4vmin}
+  .pbtn.on{background:var(--accent)}
+
+  #board{position:fixed;inset:0;z-index:35;pointer-events:none;touch-action:none}
+  #board.draw{pointer-events:auto;cursor:crosshair}
+
+  .modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+    background:rgba(10,26,24,.55)}
+  .modal.show{display:flex}
+  .panel{background:var(--card);border-radius:3vmin;padding:5vmin 6vmin;text-align:center;
+    box-shadow:0 3vmin 8vmin rgba(0,0,0,.35);min-width:46vmin;position:relative}
+  .panel .x{position:absolute;top:2vmin;right:3vmin;font-size:3.6vmin;color:var(--muted);cursor:pointer;line-height:1}
+  .panel h3{font-size:3.4vmin;color:var(--ink);margin-bottom:3vmin;font-weight:800}
+  .pickface{font-size:22vmin;font-weight:900;color:var(--accent);line-height:1;margin:1vmin 0;
+    font-variant-numeric:tabular-nums}
+  .rangebar{display:flex;gap:1.5vmin;align-items:center;justify-content:center;font-size:2.6vmin;color:var(--ink2);margin-bottom:1vmin}
+  .rangebar input{width:12vmin;font-size:3vmin;padding:1vmin;text-align:center;border:2px solid var(--line);border-radius:1.4vmin}
+  .btnrow{display:flex;gap:1.6vmin;justify-content:center;margin-top:2vmin;flex-wrap:wrap}
+  .bigbtn{background:var(--accent);color:#fff;border:none;padding:1.8vmin 4vmin;border-radius:1.6vmin;
+    font-size:3vmin;font-weight:800;cursor:pointer}
+  .bigbtn.ghost{background:transparent;color:var(--ink2);border:2px solid var(--line)}
+  .timeface{font-size:20vmin;font-weight:900;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums;margin:1vmin 0}
+  .timeface.warn{color:#e5484d;animation:blink .6s steps(2) infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .presets{display:flex;gap:1.2vmin;justify-content:center;margin-bottom:2vmin;flex-wrap:wrap}
+  .preset{background:var(--accent-soft);color:var(--ink);border:none;padding:1.2vmin 2.6vmin;border-radius:1.4vmin;font-size:2.4vmin;font-weight:700;cursor:pointer}
+  .chk{font-size:2.3vmin;color:var(--muted);margin-top:1.5vmin;display:flex;gap:.8vmin;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
@@ -325,8 +374,59 @@
 
 </div>
 
+<!-- 駕駛艙：畫布 + 工具列 + 色盤 -->
+<canvas id="board"></canvas>
+<div id="palette">
+  <div class="swatch sel" data-c="#e5484d" style="background:#e5484d" title="紅"></div>
+  <div class="swatch" data-c="#e8850c" style="background:#e8850c" title="橘"></div>
+  <div class="swatch" data-c="#2f9e6f" style="background:#2f9e6f" title="綠"></div>
+  <div class="swatch" data-c="#2f6fe0" style="background:#2f6fe0" title="藍"></div>
+  <div class="swatch" data-c="#12312e" style="background:#12312e" title="墨"></div>
+  <button class="pbtn" id="eraser" title="板擦">🧽</button>
+  <button class="pbtn" id="clearBoard" title="清除全部">🗑️</button>
+</div>
+<div id="cockpit">
+  <div class="tool" id="btnPen" title="畫筆 (D)">✏️<small>畫筆</small></div>
+  <div class="tool" id="btnPick" title="抽夥伴 (R)">🎲<small>抽人</small></div>
+  <div class="tool" id="btnTimer" title="計時 (T)">⏱️<small>計時</small></div>
+</div>
+
+<!-- 抽夥伴 -->
+<div class="modal" id="mPick">
+  <div class="panel">
+    <span class="x" data-close>×</span>
+    <h3>🎲 隨機抽夥伴</h3>
+    <div class="rangebar">座號 <input type="number" id="pMin" value="1" min="1"> 到 <input type="number" id="pMax" value="30" min="1"></div>
+    <div class="pickface" id="pFace">–</div>
+    <div class="btnrow">
+      <button class="bigbtn" id="pGo">抽！</button>
+      <button class="bigbtn ghost" id="pReset">重置</button>
+    </div>
+    <label class="chk"><input type="checkbox" id="pNoRepeat" checked> 不重複（抽過的先跳過）</label>
+  </div>
+</div>
+
+<!-- 演練計時 -->
+<div class="modal" id="mTimer">
+  <div class="panel">
+    <span class="x" data-close>×</span>
+    <h3>⏱️ 演練計時器</h3>
+    <div class="presets">
+      <button class="preset" data-min="1">1 分</button>
+      <button class="preset" data-min="2">2 分</button>
+      <button class="preset" data-min="3">3 分</button>
+      <button class="preset" data-min="5">5 分</button>
+    </div>
+    <div class="timeface" id="tFace">03:00</div>
+    <div class="btnrow">
+      <button class="bigbtn" id="tStart">開始</button>
+      <button class="bigbtn ghost" id="tReset">歸零</button>
+    </div>
+  </div>
+</div>
+
 <div id="counter">1 / 11</div>
-<div id="hint">← → 翻頁　·　F 全螢幕</div>
+<div id="hint">← → 翻頁　·　F 全螢幕　·　D 畫筆　R 抽人　T 計時</div>
 <div id="hud"><div id="bar"></div></div>
 
 <script>
@@ -339,10 +439,15 @@
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
     counter.textContent=(i+1)+' / '+slides.length;
     bar.style.width=((i+1)/slides.length*100)+'%';
+    const b=document.getElementById('board');
+    if(b&&b.getContext)b.getContext('2d').clearRect(0,0,b.width,b.height);
   }
   function next(){show(i+1)}
   function prev(){show(i-1)}
+  function anyModalOpen(){return !!document.querySelector('.modal.show');}
   document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){document.querySelectorAll('.modal.show').forEach(m=>m.classList.remove('show'));return;}
+    if(e.target.tagName==='INPUT')return;            // 打字時不翻頁
     if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next()}
     else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev()}
     else if(e.key==='Home'){show(0)}
@@ -351,12 +456,91 @@
       if(!document.fullscreenElement)document.documentElement.requestFullscreen();
       else document.exitFullscreen();
     }
+    else if(e.key==='d'||e.key==='D'){setDraw(!drawMode)}
+    else if(e.key==='r'||e.key==='R'){openModal(mPick)}
+    else if(e.key==='t'||e.key==='T'){openModal(mTimer)}
   });
-  // 點右半前進、左半後退
+  // 點右半前進、左半後退（畫筆模式或彈窗開啟時不翻頁）
   document.getElementById('stage').addEventListener('click',e=>{
+    if(drawMode||anyModalOpen())return;
     if(e.target.closest('a'))return;
     (e.clientX> window.innerWidth/2)?next():prev();
   });
+
+  /* ===== 駕駛艙工具 ===== */
+  // — 彈窗 —
+  const mPick=document.getElementById('mPick');
+  const mTimer=document.getElementById('mTimer');
+  function openModal(m){m.classList.add('show')}
+  function closeModal(m){m.classList.remove('show')}
+  document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>closeModal(x.closest('.modal')));
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m)}));
+
+  // — 畫筆 / 畫布 —
+  const board=document.getElementById('board');
+  const bctx=board.getContext('2d');
+  function sizeBoard(){board.width=innerWidth;board.height=innerHeight;bctx.lineCap='round';bctx.lineJoin='round';}
+  sizeBoard(); addEventListener('resize',sizeBoard);
+  let drawMode=false,penColor='#e5484d',eraser=false,drawing=false;
+  const btnPen=document.getElementById('btnPen'),palette=document.getElementById('palette');
+  function setDraw(on){drawMode=on;board.classList.toggle('draw',on);btnPen.classList.toggle('on',on);palette.classList.toggle('show',on);}
+  btnPen.onclick=()=>setDraw(!drawMode);
+  document.querySelectorAll('.swatch').forEach(s=>s.onclick=()=>{
+    penColor=s.dataset.c;eraser=false;
+    document.getElementById('eraser').classList.remove('on');
+    document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');
+  });
+  document.getElementById('eraser').onclick=function(){eraser=true;this.classList.add('on');
+    document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('sel'));};
+  document.getElementById('clearBoard').onclick=()=>bctx.clearRect(0,0,board.width,board.height);
+  board.addEventListener('pointerdown',e=>{if(!drawMode)return;drawing=true;bctx.beginPath();bctx.moveTo(e.clientX,e.clientY);});
+  board.addEventListener('pointermove',e=>{if(!drawing)return;
+    bctx.globalCompositeOperation=eraser?'destination-out':'source-over';
+    bctx.strokeStyle=penColor;bctx.lineWidth=eraser?30:5;
+    bctx.lineTo(e.clientX,e.clientY);bctx.stroke();});
+  addEventListener('pointerup',()=>drawing=false);
+
+  // — 抽夥伴 —
+  const pFace=document.getElementById('pFace');
+  const drawn=new Set();
+  document.getElementById('btnPick').onclick=()=>openModal(mPick);
+  document.getElementById('pReset').onclick=()=>{drawn.clear();pFace.textContent='–';};
+  document.getElementById('pGo').onclick=()=>{
+    let lo=parseInt(document.getElementById('pMin').value)||1;
+    let hi=parseInt(document.getElementById('pMax').value)||lo;
+    if(hi<lo){const t=lo;lo=hi;hi=t;}
+    const noRep=document.getElementById('pNoRepeat').checked;
+    const pool=[];for(let n=lo;n<=hi;n++)if(!(noRep&&drawn.has(n)))pool.push(n);
+    if(!pool.length){pFace.textContent='✓';setTimeout(()=>pFace.textContent='抽完了',400);return;}
+    let ticks=0;const total=16;
+    const iv=setInterval(()=>{
+      pFace.textContent=pool[Math.floor(Math.random()*pool.length)];
+      if(++ticks>=total){clearInterval(iv);
+        const pick=pool[Math.floor(Math.random()*pool.length)];
+        pFace.textContent=pick;drawn.add(pick);}
+    },55);
+  };
+
+  // — 演練計時 —
+  const tFace=document.getElementById('tFace');
+  let tSecs=180,tLeft=180,tIv=null,tRun=false;
+  const tStart=document.getElementById('tStart');
+  function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+  function renderT(){tFace.textContent=fmt(Math.max(0,tLeft));tFace.classList.toggle('warn',tLeft<=10);}
+  function stopT(){tRun=false;tStart.textContent='開始';clearInterval(tIv);}
+  function startT(){if(tLeft<=0)tLeft=tSecs;tRun=true;tStart.textContent='暫停';
+    tIv=setInterval(()=>{tLeft--;renderT();if(tLeft<=0){stopT();beep();}},1000);}
+  function beep(){try{const a=new(window.AudioContext||window.webkitAudioContext)();
+    const o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);
+    o.type='sine';o.frequency.value=880;o.start();
+    g.gain.setValueAtTime(.25,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+1.4);
+    o.stop(a.currentTime+1.4);}catch(e){}}
+  document.getElementById('btnTimer').onclick=()=>openModal(mTimer);
+  document.querySelectorAll('.preset').forEach(p=>p.onclick=()=>{stopT();tSecs=tLeft=(+p.dataset.min)*60;renderT();});
+  document.getElementById('tReset').onclick=()=>{stopT();tLeft=tSecs;renderT();};
+  tStart.onclick=()=>{tRun?stopT():startT();};
+  renderT();
+
   show(0);
 </script>
 </body>

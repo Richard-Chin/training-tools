@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{
+    font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
+    background:linear-gradient(160deg,#0f2f2c 0%,#16463e 60%,#1c5348 100%);
+    color:#fff;padding:90px 80px;display:flex;flex-direction:column;
+  }
+  .kicker{font-size:34px;letter-spacing:.08em;color:#f0c987;font-weight:800;margin-bottom:26px}
+  h1{font-size:74px;line-height:1.22;font-weight:900;letter-spacing:.01em}
+  h1 .hl{color:#f0c987}
+  .panels{display:flex;gap:34px;margin-top:60px;flex:1}
+  .p{flex:1;border-radius:34px;padding:44px 38px;display:flex;flex-direction:column}
+  .p .tag{font-size:40px;font-weight:900;margin-bottom:26px;display:flex;align-items:center;gap:14px}
+  .p .li{font-size:35px;line-height:1.5;margin:14px 0;padding-left:44px;position:relative;font-weight:500}
+  .p .li::before{content:"";position:absolute;left:6px;top:18px;width:16px;height:16px;border-radius:50%}
+  .self{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.14)}
+  .self .tag{color:#cdd8d5}
+  .self .li{color:#d5dedb}
+  .self .li::before{background:#7d908b}
+  .smart{background:#f0c987;color:#123}
+  .smart .tag{color:#7a5410}
+  .smart .li{color:#3a2c12;font-weight:700}
+  .smart .li::before{background:#c8862a}
+  .cta{margin-top:56px;background:rgba(255,255,255,.1);border:2px solid #f0c987;border-radius:26px;
+    padding:38px 44px;display:flex;align-items:center;justify-content:space-between}
+  .cta .t{font-size:44px;font-weight:900}
+  .cta .t small{display:block;font-size:30px;color:#f0c987;font-weight:700;margin-top:8px}
+  .cta .arrow{font-size:60px}
+</style>
+</head>
+<body>
+  <div class="kicker">💭 一個顛覆的小觀念</div>
+  <h1>醫療費，<br>真的要<span class="hl">靠自己存</span>嗎？</h1>
+
+  <div class="panels">
+    <div class="p self">
+      <div class="tag">😮‍💨 自己存</div>
+      <div class="li">要準備一整筆現金</div>
+      <div class="li">一輩子還不能亂動</div>
+      <div class="li">拿去投資、周轉就沒了</div>
+    </div>
+    <div class="p smart">
+      <div class="tag">😎 更聰明</div>
+      <div class="li">用比較少的準備</div>
+      <div class="li">先把位置卡好</div>
+      <div class="li">沒用到也不浪費</div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="t">想知道怎麼做？<small>私訊敲我，聊 5 分鐘就懂</small></div>
+    <div class="arrow">👉</div>
+  </div>
+</body>
+</html>

@@ -27,6 +27,7 @@
 - **cockpit**：早會駕駛艙共用模板（引擎＋TEMPLATE＋README）
 - **warm-market-development**：緣故開發早會專題（駕駛艙版，`index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸；琥珀金）
 - **stranger-development**：陌生開發早會專題（駕駛艙版，`index.html` + 手卡 `handout.html`；心態→管道→破冰→轉化；沉穩藍）
+- **appointment-setting**：安排約訪早會專題（駕駛艙版，`index.html` + 手卡 `handout.html/pdf`；開場→給理由→二選一敲時間→拒絕處理；活力橙）
 
 ## 工作注意事項
 - 客戶／員工資料一律去識別化：不放真實姓名、身分證字號、電話、地址

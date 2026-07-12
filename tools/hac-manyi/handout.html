@@ -59,10 +59,12 @@
   .noprint a.dl{display:inline-block;background:var(--good);color:#fff;padding:12px 26px;border-radius:8px;font-size:15px;font-weight:800;margin:0 0 10px 0;text-decoration:none}
   .noprint .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px}
   @media print{
-    html{zoom:0.95}
+    html{zoom:0.96}
     body{background:#fff;padding:0}
     .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
     .noprint{display:none}
+    table,.box,.feat{break-inside:avoid}      /* 表格/區塊不跨頁斷開 */
+    h2{break-after:avoid}
   }
   @media (max-width:640px){.feat,.two{grid-template-columns:1fr}}
 </style>
@@ -134,6 +136,18 @@
     <div class="fab"><b>雙帳戶</b>：「老年才最需要的實支實付，它幫你留到最後。」</div>
     <div class="fab"><b>醫材補助</b>：「換人工關節、放心臟支架，它先給你一筆，你不用那麼省。」</div>
     <div class="fab"><b>外溢</b>：「你顧好健康，公司每年回饋你保費折扣，健康有價。」</div>
+
+    <h2>銷售邏輯 · 醫療預備金（自己存 vs 保險準備）</h2>
+    <table>
+      <tr><th>自己準備兩三百萬</th><th>透過 HAC／HAD 準備</th></tr>
+      <tr><td>錢要放著不能亂動；挪去投資/買房/周轉，風險來時可能就不在了</td><td>用保費建立醫療額度，<b>不用一次拿出兩三百萬</b></td></tr>
+      <tr><td>沒生病錢還在，但也可能被別的用途花掉</td><td>沒用到，<b>保費有去有回</b>（身故/祝壽）</td></tr>
+      <tr><td>高額自費靠自己現金扛</td><td>真的用到，<b>啟動額度</b>承接自費風險</td></tr>
+    </table>
+    <div style="font-size:12px;color:var(--ink2);margin-top:7px;line-height:1.55">
+      <b style="color:var(--accent)">三大關鍵利益</b>：① 保費有去有回　② 啟動日後實支<b>接棒</b>一般實支（多只保到75~85歲）→ <b>終身實支實付</b>，補75歲後住院自費　③ 每單位醫療帳戶額度 250/500/750萬。<br>
+      💬 收尾：「用<b>比較少的準備金</b>，先把未來兩三百萬的<b>醫療風險位置占好</b>。」
+    </div>
 
     <div class="box warn" style="margin-top:14px">
       <b>合規紅線</b>：提供不低於 3 日審閱期 · 據實說明承保範圍與除外 · 以保單條款為準 · 不誇大不保證 · <b>身故給付特定條件下可能小於年繳保險費總和</b> · 無解約金、中途解約可能不利客戶 · 附加費用率 12.38%~35.72%。

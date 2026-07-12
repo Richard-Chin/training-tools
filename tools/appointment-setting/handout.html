@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安排約訪 — 單頁重點手卡</title>
+<style>
+  :root{
+    --ink:#3a2410;--ink2:#5c3f22;--paper:#faf6f1;--card:#fff;
+    --accent:#e06818;--accent-soft:#f7ddc3;--line:#e4dcd1;--muted:#8a7a68;--good:#2f7d68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--paper);color:var(--ink);padding:24px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  @page{ size:A4 portrait; margin:8mm; }
+  .sheet{max-width:820px;margin:0 auto;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(58,36,16,.08)}
+  .top{background:linear-gradient(135deg,#2b2018,#4a331c);color:#fff;padding:26px 32px}
+  .top .brand{font-size:12px;letter-spacing:.2em;color:#c9ab8c;font-weight:700}
+  .top h1{font-size:32px;font-weight:900;margin-top:6px;letter-spacing:.02em}
+  .top .kick{color:var(--accent);font-weight:700;letter-spacing:.3em;font-size:12px;margin-top:4px}
+  .top .sub{color:#e6d6c3;font-size:14px;margin-top:10px}
+  .body{padding:26px 32px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  h2{font-size:16px;color:var(--accent);font-weight:800;letter-spacing:.04em;
+    border-bottom:2px solid var(--accent-soft);padding-bottom:6px;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px}
+  h2 .n{background:var(--ink2);color:#fff;width:22px;height:22px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+  ul{list-style:none}
+  li{font-size:14px;color:var(--ink2);padding:5px 0 5px 18px;position:relative}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;
+    border-radius:50%;background:var(--accent)}
+  li b{color:var(--ink)}
+  .mind{display:flex;gap:12px;margin:14px 0 4px}
+  .mind .m{flex:1;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45}
+  .mind .no{background:#fdf6f6;border:1px solid #e6cfcf;color:#8a5a5a}
+  .mind .yes{background:#fdf7f0;border:1px solid #f0dcc4;color:#8a5a2b}
+  .mind .m .lab{font-weight:800;font-size:12px;display:block;margin-bottom:4px}
+  .focus{background:#fffaf4;border:2px solid var(--accent);border-radius:12px;padding:16px 18px;margin-top:18px}
+  .focus .h{font-size:15px;font-weight:800;color:var(--accent);margin-bottom:10px;letter-spacing:.04em}
+  .q{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink2)}
+  .q:last-child{border:none}
+  .q .num{flex:none;width:24px;height:24px;border:2px solid var(--accent);color:var(--accent);
+    border-radius:50%;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .q b{color:var(--ink)}
+  .action{background:var(--ink);color:var(--paper);border-radius:12px;padding:16px 18px;margin-top:16px}
+  .action .h{color:var(--accent);font-weight:800;letter-spacing:.2em;font-size:12px;margin-bottom:8px}
+  .action ol{margin-left:18px}
+  .action li{color:#f0e6da;font-size:14px;list-style:decimal;padding-left:4px}
+  .action li::before{display:none}
+  .action li b{color:#fff}
+  .foot{text-align:center;color:var(--muted);font-size:12px;padding:14px;border-top:1px solid var(--line)}
+  .noprint{max-width:820px;margin:14px auto 0;text-align:center}
+  .noprint button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
+  .noprint a{color:var(--ink2);font-size:13px;margin-left:14px;text-decoration:none}
+  .noprint a.dl{display:inline-block;background:var(--good);color:#fff;padding:12px 26px;border-radius:8px;font-size:15px;font-weight:800;margin:0 0 10px 0;text-decoration:none}
+  .noprint .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px}
+  @media print{
+    html{zoom:0.94}
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
+    .noprint{display:none}
+  }
+  @media (max-width:640px){.row{grid-template-columns:1fr}.mind{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="top">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜早會專題</div>
+    <div class="kick">APPOINTMENT</div>
+    <h1>安排約訪 · 重點手卡</h1>
+    <div class="sub">電話不成交，只敲時間。約到見面，就成功了一半。</div>
+  </div>
+
+  <div class="body">
+
+    <div class="mind">
+      <div class="m no"><span class="lab">✕ 卡住</span>打電話約人像在求人、怕被拒絕、怕打擾。</div>
+      <div class="m yes"><span class="lab">✓ 心法</span>我是提供一次有價值的會面邀請，見不見面由對方決定。被拒只是「時間不巧」。</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <h2><span class="n">1</span>開場 30 秒</h2>
+        <ul>
+          <li><b>報身分</b>　「我是富邦人壽的 ___」，有精神</li>
+          <li><b>有介紹人先講</b>　「___ 介紹的」，信任立刻用上</li>
+          <li><b>確認方便</b>　「現在方便講一分鐘嗎？」</li>
+          <li><b>簡短俐落</b>　開場越乾淨，越願意聽下去</li>
+        </ul>
+      </div>
+      <div>
+        <h2><span class="n">2</span>給見面的理由</h2>
+        <ul>
+          <li><b>不是賣保險</b>　是分享觀念/免費檢視/新資訊</li>
+          <li><b>對他有關</b>　連結成家、換工作、有小孩、退休</li>
+          <li><b>低壓力</b>　「給你參考，用不用你決定」</li>
+          <li><b>好奇勝說服</b>　讓對方覺得「聽聽不虧」</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="focus">
+      <div class="h">★ 核心 — 二選一敲時間</div>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:8px">不問「<b>有沒有空</b>」，要問「<b>哪個時間方便</b>」。先敲哪天→再敲幾點→確認地點→複述收尾。</p>
+      <div class="q"><span class="num">例</span><div>「<b>週三晚上，還是週六下午方便？</b>」→「好，那週六下午三點，您公司樓下咖啡廳。」</div></div>
+    </div>
+
+    <div class="focus" style="border-color:var(--line);background:#faf7f2">
+      <div class="h" style="color:var(--ink2)">電話裡三種推辭怎麼接</div>
+      <ul>
+        <li><b>沒興趣</b>　→「就當多認識個資訊，見面 20 分鐘，用不到也沒損失。」</li>
+        <li><b>沒時間</b>　→「所以才先約，時間你挑，我配合你。」</li>
+        <li><b>電話講就好</b>　→「電話講不清楚反而耽誤你，見面 20 分鐘最省時。」</li>
+      </ul>
+    </div>
+
+    <div class="action">
+      <div class="h">TODAY ACTION · 散會前三件事</div>
+      <ol>
+        <li>挑出<b>本週約訪的 10 位</b>，寫下來</li>
+        <li>把<b>「二選一敲時間」練熟</b>，對鏡子講三遍</li>
+        <li><b>今天打 3 通</b>約訪電話，各約到 1 個見面</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="foot">拿起電話，就是拿起機會 · 富邦人壽 邦拓通訊處</div>
+</div>
+
+<div class="noprint">
+  <a href="handout.pdf" download class="dl">📥 下載 PDF（手機也能存、傳 LINE）</a>
+  <span class="hint">手機：點上面直接開/存 PDF　·　電腦：也可用下方列印</span>
+  <div style="margin-top:10px">
+    <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+    <a href="index.html">← 回到網頁簡報</a>
+  </div>
+</div>
+
+</body>
+</html>

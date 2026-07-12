@@ -24,7 +24,8 @@
 ## 工具/專題清單
 （之後加新內容時會自動更新）網址格式：`https://richard-chin.github.io/training-tools/tools/<名稱>/`
 - **_cockpit**：早會駕駛艙共用模板（引擎＋TEMPLATE＋README）
-- **warm-market-development**：緣故開發早會專題（駕駛艙版，`index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸）
+- **warm-market-development**：緣故開發早會專題（駕駛艙版，`index.html` + 單頁手卡 `handout.html`；重心＝轉介紹延伸；琥珀金）
+- **stranger-development**：陌生開發早會專題（駕駛艙版，`index.html` + 手卡 `handout.html`；心態→管道→破冰→轉化；沉穩藍）
 
 ## 工作注意事項
 - 客戶／員工資料一律去識別化：不放真實姓名、身分證字號、電話、地址

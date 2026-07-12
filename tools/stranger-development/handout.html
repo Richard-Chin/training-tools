@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陌生開發 — 單頁重點手卡</title>
+<style>
+  :root{
+    --ink:#12283f;--ink2:#28415c;--paper:#f4f6fa;--card:#fff;
+    --accent:#2f6fbf;--accent-soft:#d6e4f5;--line:#d5dbe4;--muted:#68727f;--good:#2f7d68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--paper);color:var(--ink);padding:24px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:820px;margin:0 auto;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(18,40,63,.08)}
+  .top{background:linear-gradient(135deg,#12283f,#1c3d5c);color:#fff;padding:26px 32px}
+  .top .brand{font-size:12px;letter-spacing:.2em;color:#9db6d0;font-weight:700}
+  .top h1{font-size:32px;font-weight:900;margin-top:6px;letter-spacing:.02em}
+  .top .kick{color:var(--accent);font-weight:700;letter-spacing:.3em;font-size:12px;margin-top:4px}
+  .top .sub{color:#cfddf0;font-size:14px;margin-top:10px}
+  .body{padding:26px 32px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  h2{font-size:16px;color:var(--accent);font-weight:800;letter-spacing:.04em;
+    border-bottom:2px solid var(--accent-soft);padding-bottom:6px;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px}
+  h2 .n{background:var(--ink2);color:#fff;width:22px;height:22px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+  ul{list-style:none}
+  li{font-size:14px;color:var(--ink2);padding:5px 0 5px 18px;position:relative}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;
+    border-radius:50%;background:var(--accent)}
+  li b{color:var(--ink)}
+  .mind{display:flex;gap:12px;margin:14px 0 4px}
+  .mind .m{flex:1;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45}
+  .mind .no{background:#fdf6f6;border:1px solid #e6cfcf;color:#8a5a5a}
+  .mind .yes{background:#f2f8fd;border:1px solid #cfe0f0;color:#2b5580}
+  .mind .m .lab{font-weight:800;font-size:12px;display:block;margin-bottom:4px}
+  .focus{background:#f5f9fe;border:2px solid var(--accent);border-radius:12px;padding:16px 18px;margin-top:18px}
+  .focus .h{font-size:15px;font-weight:800;color:var(--accent);margin-bottom:10px;letter-spacing:.04em}
+  .q{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink2)}
+  .q:last-child{border:none}
+  .q .num{flex:none;width:24px;height:24px;border:2px solid var(--accent);color:var(--accent);
+    border-radius:50%;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .q b{color:var(--ink)}
+  .action{background:var(--ink);color:var(--paper);border-radius:12px;padding:16px 18px;margin-top:16px}
+  .action .h{color:var(--accent);font-weight:800;letter-spacing:.2em;font-size:12px;margin-bottom:8px}
+  .action ol{margin-left:18px}
+  .action li{color:#e7eef6;font-size:14px;list-style:decimal;padding-left:4px}
+  .action li::before{display:none}
+  .action li b{color:#fff}
+  .foot{text-align:center;color:var(--muted);font-size:12px;padding:14px;border-top:1px solid var(--line)}
+  .noprint{max-width:820px;margin:14px auto 0;text-align:center}
+  .noprint button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
+  .noprint a{color:var(--ink2);font-size:13px;margin-left:14px;text-decoration:none}
+  @media print{
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
+    .noprint{display:none}
+  }
+  @media (max-width:640px){.row{grid-template-columns:1fr}.mind{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="top">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜早會專題</div>
+    <div class="kick">COLD MARKET</div>
+    <h1>陌生開發 · 重點手卡</h1>
+    <div class="sub">拚的不是口才，是持續與真誠。接觸夠多、留得夠久，成交自然來。</div>
+  </div>
+
+  <div class="body">
+
+    <div class="mind">
+      <div class="m no"><span class="lab">✕ 卡住</span>被拒絕＝我很失敗、很丟臉，不敢再開口。</div>
+      <div class="m yes"><span class="lab">✓ 心法</span>拒絕的是當下的「不需要」，不是我這個人。陌生開發是機率遊戲，重點是持續出現。</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <h2><span class="n">1</span>四大接觸管道</h2>
+        <ul>
+          <li><b>面對面</b>　擺攤、路訪、社區活動、市集、講座</li>
+          <li><b>社團興趣圈</b>　運動、宗教、志工、親子、學習社群</li>
+          <li><b>線上經營</b>　個人品牌、分享內容，讓人主動來找你</li>
+          <li><b>異業合作</b>　美髮/健身/房仲互推；好客戶再延伸</li>
+        </ul>
+      </div>
+      <div>
+        <h2><span class="n">2</span>破冰開口三原則</h2>
+        <ul>
+          <li><b>先給價值</b>　先幫上忙，不急著談保險</li>
+          <li><b>真誠好奇</b>　多問多聽、少推銷</li>
+          <li><b>降低戒心</b>　不強迫，給對方舒服的空間</li>
+        </ul>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;border-left:3px solid var(--accent-soft);padding-left:10px">
+          目標是「讓陌生人願意記得你、下次還想聊」，不是當場成交。
+        </p>
+      </div>
+    </div>
+
+    <div class="focus">
+      <div class="h">★ 破冰話術 · 三情境</div>
+      <div class="q"><span class="num">1</span><div><b>擺攤/活動</b>：「我們在做免費保單健檢，不推銷，幫你看有沒有保錯或重複，花兩分鐘好嗎？」</div></div>
+      <div class="q"><span class="num">2</span><div><b>社團認識</b>：「上次聽你聊到教育金，我剛好整理過資料，改天路過拿給你參考。」</div></div>
+      <div class="q"><span class="num">3</span><div><b>線上私訊</b>：「謝謝你常看我的分享！你問的問題我做了個懶人包，方便傳給你嗎？」</div></div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:10px">
+        <b style="color:var(--good)">多次接觸法則</b>：陌生→熟悉→信任→需求。第 1 次留印象、2~3 次問候分享、第 4 次後再切專業。
+      </p>
+    </div>
+
+    <div class="focus" style="border-color:var(--line);background:#fafbfd">
+      <div class="h" style="color:var(--ink2)">常見拒絕怎麼接</div>
+      <ul>
+        <li><b>不需要</b>　→「很多人一開始都這樣想，資料先給你，用得到再看。」</li>
+        <li><b>沒時間</b>　→「不佔你時間，加個 LINE，我偶爾分享有用的就好。」</li>
+        <li><b>已經有保險</b>　→「那很好！免費幫你檢視有沒有重複或缺口。」</li>
+      </ul>
+    </div>
+
+    <div class="action">
+      <div class="h">TODAY ACTION · 散會前三件事</div>
+      <ol>
+        <li>選定<b>一個管道</b>（擺攤／社團／線上）本週實際行動</li>
+        <li>練熟<b>一句破冰開口</b>，今天找 3 個陌生人練習</li>
+        <li>接觸到的人<b>加 1 個聯絡方式</b>，開始持續出現</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="foot">敢開口，世界就變大 · 富邦人壽 邦拓通訊處</div>
+</div>
+
+<div class="noprint">
+  <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+  <a href="index.html">← 回到網頁簡報</a>
+</div>
+
+</body>
+</html>

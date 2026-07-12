@@ -1,4 +1,6 @@
-# 早會駕駛艙模板 `_cockpit`
+# 早會駕駛艙模板 `cockpit`
+
+> ⚠️ 資料夾**不能**用底線開頭（`_cockpit`）—— GitHub Pages 的 Jekyll 會忽略底線開頭資料夾，導致 css/js 在線上 404、簡報版面全垮。故命名為 `cockpit`。
 
 所有早會專題共用的**簡報引擎**。寫好投影片內容，就自動有：
 - 🎲 **抽夥伴**（可設座號範圍、不重複）
@@ -15,7 +17,7 @@
 
 ## 怎麼開一個新專題（3 步）
 1. 在 `tools/` 下建你的專題資料夾，例如 `tools/objection-handling/`
-2. 複製 `TEMPLATE.html` 進去改名 `index.html`，把 `<link>`／`<script>` 路徑改成 `../_cockpit/cockpit.css`、`../_cockpit/cockpit.js`
+2. 複製 `TEMPLATE.html` 進去改名 `index.html`，把 `<link>`／`<script>` 路徑改成 `../cockpit/cockpit.css`、`../cockpit/cockpit.js`
 3. 只改 `#stage` 裡的 `.slide` 內容即可
 
 > 也可以直接跟 Claude 說「**我想做一個 XXX 早會專題**」，會自動用這套模板生出來。

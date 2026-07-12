@@ -14,7 +14,9 @@
     font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
     background:var(--paper);color:var(--ink);padding:24px;line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
+  @page{ size:A4 portrait; margin:8mm; }
   .sheet{max-width:820px;margin:0 auto;background:var(--card);
     border:1px solid var(--line);border-radius:14px;overflow:hidden;
     box-shadow:0 10px 30px rgba(18,40,63,.08)}
@@ -57,7 +59,10 @@
   .noprint{max-width:820px;margin:14px auto 0;text-align:center}
   .noprint button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
   .noprint a{color:var(--ink2);font-size:13px;margin-left:14px;text-decoration:none}
+  .noprint a.dl{display:inline-block;background:var(--good);color:#fff;padding:12px 26px;border-radius:8px;font-size:15px;font-weight:800;margin:0 0 10px 0;text-decoration:none}
+  .noprint .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px}
   @media print{
+    html{zoom:0.92}                 /* 壓進單張 A4（本份多一個「常見拒絕」框，稍高）*/
     body{background:#fff;padding:0}
     .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
     .noprint{display:none}
@@ -138,8 +143,12 @@
 </div>
 
 <div class="noprint">
-  <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
-  <a href="index.html">← 回到網頁簡報</a>
+  <a href="handout.pdf" download class="dl">📥 下載 PDF（手機也能存、傳 LINE）</a>
+  <span class="hint">手機：點上面直接開/存 PDF　·　電腦：也可用下方列印</span>
+  <div style="margin-top:10px">
+    <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+    <a href="index.html">← 回到網頁簡報</a>
+  </div>
 </div>
 
 </body>

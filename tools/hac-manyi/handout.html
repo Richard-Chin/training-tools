@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>實在滿溢 — 商品重點手卡</title>
+<style>
+  :root{
+    --ink:#0e332f;--ink2:#1e514a;--paper:#f3faf8;--card:#fff;
+    --accent:#12897b;--accent-soft:#cfe9e4;--line:#d5e5e1;--muted:#5f7a74;--good:#2f7d68;--warn:#b5602a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--paper);color:var(--ink);padding:24px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  @page{ size:A4 portrait; margin:8mm; }
+  .sheet{max-width:840px;margin:0 auto;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(14,51,47,.08)}
+  .top{background:linear-gradient(135deg,#0e332f,#135a51);color:#fff;padding:24px 30px}
+  .top .brand{font-size:12px;letter-spacing:.2em;color:#8fc4bb;font-weight:700}
+  .top h1{font-size:29px;font-weight:900;margin-top:6px;letter-spacing:.02em}
+  .top .kick{color:#7fd8c9;font-weight:700;letter-spacing:.25em;font-size:12px;margin-top:4px}
+  .top .sub{color:#cfe9e4;font-size:13.5px;margin-top:8px}
+  .body{padding:22px 30px}
+  h2{font-size:15px;color:var(--accent);font-weight:800;letter-spacing:.03em;
+    border-bottom:2px solid var(--accent-soft);padding-bottom:5px;margin:16px 0 10px;
+    display:flex;align-items:center;gap:8px}
+  h2:first-child{margin-top:0}
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .feat .f{background:#f4faf8;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13px;color:var(--ink2)}
+  .feat .f b{color:var(--accent)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left}
+  th{background:var(--accent);color:#fff;font-weight:700}
+  tr:nth-child(even) td{background:#f4faf8}
+  td b{color:var(--ink)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  ul{list-style:none}
+  li{font-size:13px;color:var(--ink2);padding:4px 0 4px 16px;position:relative}
+  li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  li b{color:var(--ink)}
+  .box{border-radius:9px;padding:11px 14px;font-size:12.5px;line-height:1.5}
+  .box.溢{background:#f0f9f6;border:1px solid #bfe3db;color:var(--ink2)}
+  .box.溢 b{color:var(--accent)}
+  .box.warn{background:#fdf6ee;border:1px solid #ecd6bd;color:#7a5326}
+  .box.warn b{color:var(--warn)}
+  .fab{font-size:12.5px;color:var(--ink2);padding:5px 0;border-bottom:1px dashed var(--line)}
+  .fab:last-child{border:none}
+  .fab b{color:var(--ink)}
+  .foot{text-align:center;color:var(--muted);font-size:11.5px;padding:12px;border-top:1px solid var(--line)}
+  .disc{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+  .noprint{max-width:840px;margin:14px auto 0;text-align:center}
+  .noprint button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
+  .noprint a{color:var(--ink2);font-size:13px;margin-left:14px;text-decoration:none}
+  .noprint a.dl{display:inline-block;background:var(--good);color:#fff;padding:12px 26px;border-radius:8px;font-size:15px;font-weight:800;margin:0 0 10px 0;text-decoration:none}
+  .noprint .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px}
+  @media print{
+    html{zoom:0.95}
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%}
+    .noprint{display:none}
+  }
+  @media (max-width:640px){.feat,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="top">
+    <div class="brand">富邦人壽 · 邦拓通訊處｜商品訓練手卡</div>
+    <div class="kick">PRODUCT · 醫療雙帳戶</div>
+    <h1>實在滿溢 住院醫療終身健康保險</h1>
+    <div class="sub">HAC1-3／HAD1-3　·　先定額、後實支，健康還能省保費。詳細內容以保單條款為準。</div>
+  </div>
+
+  <div class="body">
+
+    <h2>官方四大特色</h2>
+    <div class="feat">
+      <div class="f"><b>① 醫療雙帳戶</b>　終身保障；啟動日前/後各有獨立總額，最高達 750 萬（計劃3）。</div>
+      <div class="f"><b>② 先定額後實支</b>　啟動前定額給付；啟動日(含)後轉實支實付。</div>
+      <div class="f"><b>③ 二種啟動日</b>　75 歲/80 歲，保障至 95/100 歲。</div>
+      <div class="f"><b>④ 身故/祝壽</b>　身故或活到 95/100 歲，給付當年度保險金額。</div>
+    </div>
+
+    <h2>雙階段給付（以計劃2）</h2>
+    <div class="two">
+      <div>
+        <table>
+          <tr><th>啟動日前 · 定額</th><th>金額/次</th></tr>
+          <tr><td>住院關懷（住院滿5日）</td><td>10,000</td></tr>
+          <tr><td><b>醫材補助</b>（8項·最多10次）</td><td>10,000</td></tr>
+          <tr><td>住院手術醫療</td><td>4,000</td></tr>
+          <tr><td>門診手術醫療</td><td>1,000</td></tr>
+          <tr><td>住院前後門診</td><td>500</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>啟動日後 · 實支（二擇優）</th><th>限額</th></tr>
+          <tr><td>住院醫療日額</td><td>2,000/日</td></tr>
+          <tr><td>每日病房費（加護加倍）</td><td>2,000~4,000/日</td></tr>
+          <tr><td><b>住院醫療暨手術費</b></td><td>20萬/次</td></tr>
+          <tr><td>門診手術醫療費</td><td>3萬/次</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="disc">醫材補助 8 項：人工水晶體、人工膝/髖關節、心臟支架、心律調節器、心臟瓣膜置換、腦室腹腔分流、心室輔助裝置。各階段各項醫療金總限額 500 萬（計劃2）；非健保身分實支按 75% 給付。</p>
+
+    <div class="two" style="margin-top:14px">
+      <div>
+        <h2 style="margin-top:0">外溢 · 健康就省</h2>
+        <div class="box 溢">
+          💉 指定疫苗（11種任一）折 <b>1%</b>　🩺 健檢報告折 <b>1%</b><br>
+          ⚠️ <b>健康折扣「疫苗＋健檢」合計上限 1%</b>；再加繳費方式（轉帳/信用卡）1%，續期<b>最多省 2%</b>。別講成健康折扣 2%。
+        </div>
+      </div>
+      <div>
+        <h2 style="margin-top:0">投保規則</h2>
+        <ul>
+          <li>計劃 1/2/3（總限額 250/500/750萬），三擇一、限 1 單位</li>
+          <li><b>HAC</b>＝75歲啟動/95歲屆滿；<b>HAD</b>＝80歲啟動/100歲屆滿</li>
+          <li>繳費 10/20/30 年期；<b>無解約金</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>賣給誰 + FAB 一句話</h2>
+    <div class="fab"><b>怕老年醫療費 / 重視自費醫材品質 / 有健檢習慣 / 想一張管到老</b></div>
+    <div class="fab"><b>雙帳戶</b>：「老年才最需要的實支實付，它幫你留到最後。」</div>
+    <div class="fab"><b>醫材補助</b>：「換人工關節、放心臟支架，它先給你一筆，你不用那麼省。」</div>
+    <div class="fab"><b>外溢</b>：「你顧好健康，公司每年回饋你保費折扣，健康有價。」</div>
+
+    <div class="box warn" style="margin-top:14px">
+      <b>合規紅線</b>：提供不低於 3 日審閱期 · 據實說明承保範圍與除外 · 以保單條款為準 · 不誇大不保證 · <b>身故給付特定條件下可能小於年繳保險費總和</b> · 無解約金、中途解約可能不利客戶 · 附加費用率 12.38%~35.72%。
+    </div>
+
+  </div>
+  <div class="foot">先定額、後實支，健康還能省 · 富邦人壽 邦拓通訊處｜本手卡僅供教育訓練，一切以保單條款及富邦人壽核保作業為準</div>
+</div>
+
+<div class="noprint">
+  <a href="handout.pdf" download class="dl">📥 下載 PDF（手機也能存、傳 LINE）</a>
+  <span class="hint">手機：點上面直接開/存 PDF　·　電腦：也可用下方列印</span>
+  <div style="margin-top:10px">
+    <button onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+    <a href="index.html">← 回到訓練簡報</a>
+  </div>
+</div>
+
+</body>
+</html>
